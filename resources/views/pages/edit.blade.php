@@ -4,7 +4,7 @@
 <div class="container">
     <h1 class="mb-4" style="margin-left: 15px; font-size:30px;">Edit Instrument</h1>
     <div class="row">
-        <form action="{{ route('edit', $instrument->id) }}" method="POST" style="max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ccc; border-radius: 8px; background-color: #f9f9f9;">
+        <form action="{{ route('edit', $instrument->id) }}" method="POST" enctype="multipart/form-data" style="max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ccc; border-radius: 8px; background-color: #f9f9f9;">
             @csrf
             @method('PUT')
 
@@ -26,6 +26,11 @@
             <div style="margin-bottom: 15px;">
                 <label for="description" style="display: block; font-weight: bold; margin-bottom: 5px;">Description</label>
                 <textarea id="description" name="description" placeholder="Instrument Description" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 16px;">{{ old('description', $instrument->description) }}</textarea>
+            </div>
+
+            <div style="margin-bottom: 15px;">
+                <label for="name" style="display: block; font-weight: bold; margin-bottom: 5px;">Image</label>
+                <input type="file"  name="image" placeholder="Image Upload" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 16px;">
             </div>
 
             <button type="submit" style="padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 4px; font-size: 16px; cursor: pointer;">

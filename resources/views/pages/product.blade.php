@@ -11,6 +11,11 @@
                         <p class="instrument-description" style="margin: 10px 0; font-size: 14px; color: #666;">{{ $instrument->description }}</p>
                         <p class="instrument-price" style="margin: 10px 0; font-size: 16px; font-weight: bold; color: #27ae60;">Price: ${{ number_format($instrument->price, 2) }}</p>
                         <p class="instrument-stock" style="margin: 10px 0; font-size: 14px; color: #e74c3c;">Stock: {{ $instrument->stock }}</p>
+                        <img src="{{ asset('storage/' . $instrument->image) }}" style="max-height: 200px; max-width:200px; margin-top: 15px;"  alt="Instrument Image">
+
+
+
+
                         <!-- Button Styling -->
                         @if(auth()->check())
                         <form action="{{ route('cart.add', $instrument->id) }}" method="POST">

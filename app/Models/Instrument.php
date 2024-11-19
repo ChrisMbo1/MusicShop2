@@ -13,6 +13,7 @@ class Instrument extends Model
         'description',
         'price',
         'stock',
+        'image',
     ];
     use HasFactory;
 }
