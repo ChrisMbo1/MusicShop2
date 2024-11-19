@@ -17,12 +17,10 @@
 
 
                         <!-- Button Styling -->
-                        @if(auth()->check())
                         <form action="{{ route('cart.add', $instrument->id) }}" method="POST">
                             @csrf
                             <button style="padding: 3px; background-color: grey; border: none; color: white; cursor: pointer;" type="submit">Buy</button>
                         </form>
-                        @endif
                         <!-- Edit button for Admins -->
                         @if(auth()->user() && auth()->user()->is_admin)
                             <a href="{{ route('edit', $instrument->id) }}" class="edit-btn" style="display: inline-block; margin-top: 10px; padding: 8px 16px; background-color: #2ecc71; border: none; color: white; cursor: pointer; border-radius: 6px; font-size: 14px; font-weight: bold; transition: background-color 0.3s ease;">

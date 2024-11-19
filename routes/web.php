@@ -20,21 +20,27 @@ Route::get('/cart', function () {
     return view('pages.cart');
 })->name('cart');
 
-// Group for authenticated users
+Route::post('/cart/{id}', [CartController::class, 'addToCart'])->name('cart.add');
+
+
 Route::middleware(EnsureUserIsAdmin::class)->group(function () {
     Route::get('/create', [ProductController::class, 'makeNewItem'])->name('create');
     Route::post('/create', [ProductController::class, 'createNewItem']);
     Route::get('/edit/{id}', [ProductController::class, 'editItem'])->name('edit');
     Route::put('/edit/{id}', [ProductController::class, 'updateItem']);
     Route::delete('/edit/{id}', [ProductController::class, 'deleteItem'])->name('delete');
-    Route::post('/cart/{id}', [CartController::class, 'addToCart'])->name('cart.add');
-    Route::delete('/cart/{id}', [CartController::class, 'removeFromCart'])->name('cart.remove');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+
+
+Route::get('/register', function(){
+    return view('register');
+    })->name('register');
+    
 // Route for the dashboard (only accessible for authenticated users)
 Route::get('/dashboard', function () {
     return view('dashboard');
