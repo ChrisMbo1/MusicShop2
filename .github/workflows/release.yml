@@ -1,1 +1,21 @@
+name: 🚀 Auto Release with Notes
+
+on:
+  push:
+    tags:
+      - 'v*.*.*' # Trigger the workflow when a tag like v1.0.0 is pushed
+
+jobs:
+  generate-release-notes:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🔄 Checkout code
+        uses: actions/checkout@v3
+
+      - name: 📝 Generate GitHub Release with Auto Notes
+        uses: softprops/action-gh-release@v1
+        with:
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
