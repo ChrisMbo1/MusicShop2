@@ -9,22 +9,22 @@ class CartController extends Controller
 {
     public function addToCart($id)
     {
-        // Get the instrument by ID
+        // get ID
         $instrument = Instrument::findOrFail($id);
     
-        // Check if the user is logged in
+        // check if logged in
         if (!auth()->check()) {
             return redirect()->route('login')->with('error', 'You need to log in to add items to the cart.');
         }
     
         // Check if the instrument is in stock
         if ($instrument->stock >= 1) {
-            // Get the current cart from the session, or create an empty cart if none exists
+            // Get the current cart from the session, or create an empty cart if it doesnt  exists
             $cart = session()->get('cart', []);
     
             // Check if the instrument is already in the cart
             if (isset($cart[$id])) {
-                // Ensure quantity doesn't exceed stock
+                // make it so that if quantity is 0 you cant put anymore in cart
                 if ($cart[$id]['quantity'] < $instrument->stock) {
                     $cart[$id]['quantity']++;
                 } else {
@@ -44,7 +44,7 @@ class CartController extends Controller
             // Save the cart back to the session
             session()->put('cart', $cart);
     
-            // Decrease the stock of the instrument in the database
+            // Decrease the stockin the database
             $instrument->decrement('stock');
     
             return redirect()->route('cart')->with('success', 'Item added to cart.');

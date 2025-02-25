@@ -12,11 +12,6 @@
                         <p class="instrument-price" style="margin: 10px 0; font-size: 16px; font-weight: bold; color: #27ae60;">Price: ${{ number_format($instrument->price, 2) }}</p>
                         <p class="instrument-stock" style="margin: 10px 0; font-size: 14px; color: #e74c3c;">Stock: {{ $instrument->stock }}</p>
                         <img src="{{ asset('storage/' . $instrument->image) }}" style="max-height: 200px; max-width:200px; margin-top: 15px;"  alt="Instrument Image">
-
-
-
-
-                        <!-- Button Styling -->
                         <form action="{{ route('cart.add', $instrument->id) }}" method="POST">
                             @csrf
                             <button style="padding: 3px; background-color: grey; border: none; color: white; cursor: pointer;" type="submit">Buy</button>

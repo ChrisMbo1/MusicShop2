@@ -15,7 +15,6 @@ Route::get('/product', function () {
     return view('pages.product', ['instruments' => $instruments]);
 })->name('product');
 
-// Routes for the cart page
 Route::get('/cart', function () {
     return view('pages.cart');
 })->name('cart');
@@ -41,7 +40,6 @@ Route::get('/register', function(){
     return view('register');
     })->name('register');
     
-// Route for the dashboard (only accessible for authenticated users)
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

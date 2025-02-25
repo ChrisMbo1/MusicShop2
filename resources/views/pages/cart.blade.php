@@ -9,14 +9,14 @@
                 <div style="padding: 20px; border: 1px solid #ddd; border-radius: 5px; background-color: #f9f9f9;">
                     @if(session('cart') && count(session('cart')) > 0)
                         <ul style="list-style-type: none; padding: 0;">
-                            @php $total = 0; @endphp <!-- Initialize total -->
+                            @php $total = 0; @endphp <!-- total -->
                             @foreach(session('cart') as $id => $instrument)
                                 <li style="padding: 10px; border-bottom: 1px solid #ccc;">
                                     <strong style="font-size: 18px; color: #007bff;">{{ $instrument['name'] }}</strong><br>
                                     <span style="color: #666;">Description: {{ $instrument['description'] ?? 'No description available.' }}</span><br>
                                     <span style="font-weight: bold;">Price: ${{ number_format($instrument['price'], 2) }}</span><br>
                                     <span style="font-weight: bold;">Quantity: {{ $instrument['quantity'] }}</span><br>
-                                    @php $total += $instrument['price'] * $instrument['quantity']; @endphp <!-- Calculate total -->
+                                    @php $total += $instrument['price'] * $instrument['quantity']; @endphp <!-- Calculatetotal price -->
                                 </li>
                             @endforeach
                         </ul>
